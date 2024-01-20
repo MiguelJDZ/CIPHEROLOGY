@@ -14,6 +14,8 @@ import {
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
 import { Info } from "lucide-react";
 import {
     Tooltip,
@@ -22,38 +24,38 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import Image from 'next/image';
 
-interface PigpenCipher {
-    [key: string]: JSX.Element;
-}
 
-import imgA from './images/a.png';
+export const CipherCard = () => {
 
-export const CipherCard: React.FC = () => {
-
-    const [text, setText] = useState<string>('');
-    const [encryptedText, setEncryptedText] = useState<JSX.Element[]>([]);
-
-    const pigpenCipher: PigpenCipher = {
-        A: <Image src={imgA} alt="A" width={50} height={50} />
-        // Add similar entries for the rest of the images
-    };
+    const [text, setText] = useState('');
+    const [encryptedText, setEncryptedText] = useState('');
 
     const encryptText = () => {
-        const encrypted = text.toUpperCase().split('').map(char => pigpenCipher[char] || char);
+        const encrypted = text
+            .split('')
+            .map(char => {
+                if (char.match(/[a-zA-Z]/)) {
+                    const baseCharCode = char.toLowerCase() === char ? 'a'.charCodeAt(0) : 'A'.charCodeAt(0);
+                    const rotatedCharCode = (char.charCodeAt(0) - baseCharCode + 13) % 26 + baseCharCode;
+                    return String.fromCharCode(rotatedCharCode);
+                }
+                return char;
+            })
+            .join('');
         setEncryptedText(encrypted);
     };
+
     return (
         <>
             <Card>
                 <CardHeader>
-                    <CardTitle>Encipher your Plain Text</CardTitle>
-                    <CardDescription>Encipher the plain text using the pigpen cipher algorithm.</CardDescription>
+                    <CardTitle>Encipher/ Decipher your Text</CardTitle>
+                    <CardDescription>Encipher or Decipher the text using the ROT13 cipher algorithm.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="grid w-full gap-1.5">
-                        <Label htmlFor="message-2" className='flex'>Plain Text to Encipher
+                        <Label htmlFor="message-2" className='flex'>Text to Encipher/Decipher
                             <TooltipProvider>
                                 <Tooltip>
                                     <TooltipTrigger><Info className="w-3 h-3 ml-1" /></TooltipTrigger>
@@ -70,19 +72,22 @@ export const CipherCard: React.FC = () => {
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                         />
+                        <p className="text-sm text-muted-foreground">
+                            Make sure to select a shift key to encipher the plain text.
+                        </p>
                     </div>
                 </CardContent>
                 <CardContent>
                     <div className="grid w-full gap-1.5">
                         <Button onClick={encryptText} type="submit" className="mt-4 w-full">
-                            Encipher Plain Text
+                            Encipher/Decipher Text
                         </Button>
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <div className="grid grid-col gap-2">
+                    <div className="grid w-full gap-1.5">
                         <Label>Result:</Label>
-                        <p className='flex flex-wrap overflow-auto h-[60px]'>{encryptedText}</p>
+                        <p>{encryptedText}</p>
                     </div>
                 </CardFooter>
             </Card>

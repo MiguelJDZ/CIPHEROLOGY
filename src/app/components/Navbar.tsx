@@ -27,9 +27,9 @@ const subcomponents: { title: string; href: string; description: string }[] = [
     },
     {
         title: "Kama-sutra Cipher",
-        href: "/docs/primitives/hover-card",
+        href: "/kamasutra",
         description:
-            "For sighted users to preview content available behind a link.",
+            "Ancient Indian encryption using positions from the Kama Sutra for unique and discreet message encoding.",
     },
     {
         title: "Pigpen Cipher",
@@ -38,59 +38,40 @@ const subcomponents: { title: string; href: string; description: string }[] = [
             "A symbolic encryption method using a grid of symbols to represent letters, often resembling a pigpen, for covert messaging.",
     },
     {
-        title: "Mono-alphabetic Cipher",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
-    },
-    {
         title: "Atbash Cipher",
-        href: "/docs/primitives/tabs",
+        href: "/atbash",
         description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+            "Substitute each letter with its mirror image, providing a simple yet effective code for concealed messages.",
     },
     {
         title: "ROT13 Cipher",
-        href: "/docs/primitives/tooltip",
+        href: "/rot13",
         description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "A cipher where each letter in the plaintext is shifted 13 positions and substituted.",
     },
 ]
 
 const components: { title: string; href: string; description: string }[] = [
     {
-        title: "Alert Dialog",
+        title: "Railfence Cipher",
         href: "/docs/primitives/alert-dialog",
         description:
             "A modal dialog that interrupts the user with important content and expects a response.",
     },
     {
-        title: "Hover Card",
+        title: "Route Cipher",
         href: "/docs/primitives/hover-card",
         description:
             "For sighted users to preview content available behind a link.",
     },
+]
+
+const precomponents: { title: string; href: string; description: string }[] = [
     {
-        title: "Progress",
-        href: "/docs/primitives/progress",
+        title: "Playfair Cipher",
+        href: "/docs/primitives/alert-dialog",
         description:
-            "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-        title: "Scroll-area",
-        href: "/docs/primitives/scroll-area",
-        description: "Visually or semantically separates content.",
-    },
-    {
-        title: "Tabs",
-        href: "/docs/primitives/tabs",
-        description:
-            "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-        title: "Tooltip",
-        href: "/docs/primitives/tooltip",
-        description:
-            "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+            "A modal dialog that interrupts the user with important content and expects a response.",
     },
 ]
 
@@ -101,7 +82,7 @@ export function Navbar() {
             <Link  href="/">
                 <h1 className={`${myFont.className} absolute ml-10 text-5xl`}>CIPHEROLOGY</h1>
             </Link>
-            <div className="absolute mr-10 right-0">
+            <div className="absolute mt-[40px] mr-10 right-0">
                 <NavigationMenu>
                     <NavigationMenuList>
                         <NavigationMenuItem>
@@ -142,13 +123,13 @@ export function Navbar() {
                             <NavigationMenuTrigger>Advanced Ciphers</NavigationMenuTrigger>
                             <NavigationMenuContent>
                                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                                    {subcomponents.map((subcomponent) => (
+                                    {precomponents.map((precomponent) => (
                                         <ListItem
-                                            key={subcomponent.title}
-                                            title={subcomponent.title}
-                                            href={subcomponent.href}
+                                            key={precomponent.title}
+                                            title={precomponent.title}
+                                            href={precomponent.href}
                                         >
-                                            {subcomponent.description}
+                                            {precomponent.description}
                                         </ListItem>
                                     ))}
                                 </ul>

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import {
     Card,
@@ -14,6 +14,7 @@ import {
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 import { Info } from "lucide-react";
 import {
     Tooltip,
@@ -22,26 +23,38 @@ import {
     TooltipTrigger,
 } from "@/components/ui/tooltip"
 
-import Image from 'next/image';
-
-interface PigpenCipher {
-    [key: string]: JSX.Element;
-}
-
-import imgA from './images/a.png';
-
 export const CipherCard: React.FC = () => {
 
-    const [text, setText] = useState<string>('');
-    const [encryptedText, setEncryptedText] = useState<JSX.Element[]>([]);
+    const [text, setText] = useState('');
+    const [encryptedText, setEncryptedText] = useState('');
+    const [randomAlphabet, setRandomAlphabet] = useState<string[]>([]);
 
-    const pigpenCipher: PigpenCipher = {
-        A: <Image src={imgA} alt="A" width={50} height={50} />
-        // Add similar entries for the rest of the images
+    useEffect(() => {
+        generateRandomAlphabet();
+    }, []);
+
+    const generateRandomAlphabet = () => {
+        const originalAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const shuffledAlphabet = originalAlphabet.split('').sort(() => Math.random() - 0.5);
+        setRandomAlphabet(shuffledAlphabet);
+        return toast({
+            title: "New Alphabet has been generated!",
+            description: "The Kama-sutra cipher can be done using different alphabet orders.",
+        });
     };
 
     const encryptText = () => {
-        const encrypted = text.toUpperCase().split('').map(char => pigpenCipher[char] || char);
+        const encrypted = text
+            .toUpperCase()
+            .split('')
+            .map(char => {
+                const index = char.charCodeAt(0) - 'A'.charCodeAt(0);
+                if (index >= 0 && index < 26) {
+                    return randomAlphabet[index];
+                }
+                return char;
+            })
+            .join('');
         setEncryptedText(encrypted);
     };
     return (
@@ -49,7 +62,7 @@ export const CipherCard: React.FC = () => {
             <Card>
                 <CardHeader>
                     <CardTitle>Encipher your Plain Text</CardTitle>
-                    <CardDescription>Encipher the plain text using the pigpen cipher algorithm.</CardDescription>
+                    <CardDescription>Encipher the plain text using the kama-sutra cipher algorithm.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="grid w-full gap-1.5">
@@ -80,9 +93,14 @@ export const CipherCard: React.FC = () => {
                     </div>
                 </CardContent>
                 <CardFooter>
-                    <div className="grid grid-col gap-2">
-                        <Label>Result:</Label>
-                        <p className='flex flex-wrap overflow-auto h-[60px]'>{encryptedText}</p>
+                    <div className="grid w-full gap-1.5">
+                        <div>
+                            <Label>Result:</Label>
+                            <p>{encryptedText}</p>
+                        </div>
+                        <Button onClick={generateRandomAlphabet} type="submit" className="mt-4 w-full">
+                            Generate New Alphabet
+                        </Button>
                     </div>
                 </CardFooter>
             </Card>
