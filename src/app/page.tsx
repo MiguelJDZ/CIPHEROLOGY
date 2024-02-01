@@ -1,11 +1,9 @@
-import Menubar from './components/Menubar'
 import { Navbar } from './components/Navbar'
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <Menubar />
       <div className="... flex flex-col items-center justify-center mt-[15%]">
         <h1 style={{fontSize: "xxx-large"}}>
           Unlock Secrets, Secure Messages:
