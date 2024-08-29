@@ -10,9 +10,9 @@ export default function Home() {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">
-          <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black text-white">
+          <section className="w-full py-12 md:py-24 lg:py-32 xl:py-56 bg-black text-white">
             <div className="container px-4 md:px-6">
-              <div className="flex flex-col items-center space-y-4 text-center">
+              <div className="flex flex-col items-center space-y-12 text-center">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
                     Unlock Secrets, Secure Messages
@@ -21,9 +21,9 @@ export default function Home() {
                     Encrypt and decrypt your messages with ease. Keep your communications private and secure.
                   </p>
                 </div>
-                <div className="space-x-4">
-                  <Button className="bg-white text-black hover:bg-gray-200">Get Started</Button>
-                  <Button variant="outline">Learn More</Button>
+                <div className="space-x-7">
+                  <Button className="bg-white text-black hover:bg-gray-200 text-lg"><Link href={"/caesar"}>Get Started</Link></Button>
+                  <Button className="bg-white text-black hover:bg-gray-200 text-lg">Learn More</Button>
                 </div>
               </div>
             </div>
@@ -55,7 +55,7 @@ export default function Home() {
                 <div className="flex flex-col items-center text-center">
                   <Users className="h-12 w-12 mb-4 text-red-500" />
                   <h3 className="text-xl font-bold mb-2">Secure Sharing</h3>
-                  <p className="text-gray-600">Share encrypted messages with other CipherSafe users securely.</p>
+                  <p className="text-gray-600">Share encrypted messages with other Cipherology users securely.</p>
                 </div>
                 <div className="flex flex-col items-center text-center">
                   <Lock className="h-12 w-12 mb-4 text-indigo-500" />
@@ -73,13 +73,13 @@ export default function Home() {
                     Ready to secure your messages?
                   </h2>
                   <p className="mx-auto max-w-[600px] text-blue-100 md:text-xl">
-                    Join thousands of users who trust CipherSafe for their encryption needs.
+                    Join thousands of users who trust Cipherology for their encryption needs.
                   </p>
                 </div>
                 <div className="w-full max-w-sm space-y-2">
                   <form className="flex space-x-2">
                     <Input
-                      className="max-w-lg flex-1 bg-white text-black"
+                      className="max-w-lg flex-1 bg-white text-black outline-none"
                       placeholder="Enter your email"
                       type="email"
                     />
@@ -99,13 +99,13 @@ export default function Home() {
           </section>
         </main>
         <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-          <p className="text-xs text-gray-500">© 2023 CipherSafe. All rights reserved.</p>
+          <p className="text-xs text-gray-500">© 2024 Cipherology. All rights reserved.</p>
           <nav className="sm:ml-auto flex gap-4 sm:gap-6">
             <Link className="text-xs hover:underline underline-offset-4" href="#">
               Terms of Service
             </Link>
             <Link className="text-xs hover:underline underline-offset-4" href="#">
-              Privacy
+              Privacy Policy
             </Link>
           </nav>
         </footer>

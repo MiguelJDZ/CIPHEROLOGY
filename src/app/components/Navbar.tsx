@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { Lock, Unlock, Shield, Zap, Code, Users } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import {
@@ -78,9 +79,10 @@ const precomponents: { title: string; href: string; description: string }[] = [
 export function Navbar() {
 
     return (
-        <div className="flex items-center mt-10 mb-20">
-            <Link  href="/">
-                <h1 className={`${myFont.className} absolute ml-10 text-5xl`}>CIPHEROLOGY</h1>
+        <div className="flex items-center flex-row mt-10 mb-20">
+            <Link className="flex items-center justify-center absolute mt-[40px] mr-10 left-8" href="/">
+                <Lock className="h-6 w-6 mr-2" />
+                <span className="font-bold text-3xl">CIPHEROLOGY</span>
             </Link>
             <div className="absolute mt-[40px] mr-10 right-0">
                 <NavigationMenu>
