@@ -1,8 +1,10 @@
+import React from "react"
 import { Lock, Unlock, Shield, Zap, Code, Users } from "lucide-react"
 import Link from "next/link"
 import { Navbar } from './components/Navbar'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision"
 
 export default function Home() {
   return (
@@ -10,26 +12,28 @@ export default function Home() {
       <div className="flex flex-col min-h-screen">
         <Navbar />
         <main className="flex-1">
-          <section className="w-full py-12 md:py-24 lg:py-32 xl:py-56 bg-black text-white">
-            <div className="container px-4 md:px-6">
-              <div className="flex flex-col items-center space-y-12 text-center">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                    Unlock Secrets, Secure Messages
-                  </h1>
-                  <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl">
-                    Encrypt and decrypt your messages with ease. Keep your communications private and secure.
-                  </p>
-                </div>
-                <div className="space-x-7">
-                  <Button className="bg-white text-black hover:bg-gray-200 text-lg"><Link href={"/caesar"}>Get Started</Link></Button>
-                  <Button className="bg-white text-black hover:bg-gray-200 text-lg">Learn More</Button>
+          <BackgroundBeamsWithCollision>
+            <section className="w-full py-12 md:py-24 lg:py-32 xl:py-56 bg-black text-white">
+              <div className="container px-4 md:px-6">
+                <div className="flex flex-col items-center space-y-12 text-center">
+                  <div className="space-y-2">
+                    <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                      Unlock Secrets, Secure Messages
+                    </h1>
+                    <p className="mx-auto max-w-[700px] text-gray-400 md:text-xl">
+                      Encrypt and decrypt your messages with ease. Keep your communications private and secure.
+                    </p>
+                  </div>
+                  <div className="space-x-7">
+                    <Button className="bg-white text-black hover:bg-gray-200 text-lg"><Link href={"/caesar"}>Get Started</Link></Button>
+                    <Button className="bg-white text-black hover:bg-gray-200 text-lg">Learn More</Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </BackgroundBeamsWithCollision>
           <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
-            <div className="container px-4 md:px-6">
+            <div className="container px-4 md:px-6 ">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Our Features</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <div className="flex flex-col items-center text-center">
